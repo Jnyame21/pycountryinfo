@@ -1,0 +1,25 @@
+# Byte-compiled files
+*.pyc
+*.pyo
+__pycache__/
+
+# Virtual environments
+venv/
+.env/
+
+# IDE configuration
+.idea/
+.vscode/
+
+# Build artifacts
+build/
+dist/
+*.egg-info/
+
+# Environment variables
+.env
+update.py
+
+# Test/debug artifacts
+.coverage
+coverage/
