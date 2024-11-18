@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "pycountryinfo"
-version = "1.0.2"
+version = "1.0.4"
 description = "A Python package that provides information about countries, including their name, nationality, and other relevant data. Perfect for geographic data applications."
 readme = { file = "README.md", content-type = "text/markdown" }
 authors = [
@@ -22,10 +22,11 @@ dependencies = [
 requires-python = ">=3.6"
 urls = {homepage = "https://github.com/Jnyame21/pycountryinfo"}
 
-[tool.setuptools.packages.find]
-include = ["pycountryinfo*"]
-
 [tool.setuptools]
 include-package-data = true
+packages = ["pycountryinfo"]
+
+[tool.setuptools.package-data]
+"pycountryinfo" = ["data/*"]
 
 
