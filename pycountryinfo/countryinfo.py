@@ -1,6 +1,7 @@
 import json
 from typing import List, Dict, Tuple
-from country_types import CountryInfoTypes
+from .country_types import CountryInfoTypes
+from importlib.resources import files
 
 class PyCountryInfo:
     def __init__(self, country:str = ""):
@@ -10,7 +11,8 @@ class PyCountryInfo:
             raise ValueError("Invalid country name type. Use 'common' or 'official'.")
         
         try:
-            with open("../data/countries.json", 'r') as file:
+            countries_file = files('pycountryinfo.data').joinpath('countries.json')
+            with countries_file.open('r') as file:
                 self.countries_list = json.load(file)
         except FileNotFoundError:
             raise ValueError("The countries data file is missing.")

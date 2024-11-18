@@ -12,6 +12,7 @@ setup(
     description='A Python package that provides information about countries, including their name, nationality, and other relevant data. Perfect for geographic data applications.',
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',
+    include_package_data=True,
     url='https://github.com/Jnyame21/pycountryinfo',
     classifiers=[
         'Programming Language :: Python :: 3',
