@@ -12,7 +12,7 @@ class TestPyCountryInfo(unittest.TestCase):
     
     def test_additional_countries_properties(self):
         additional_countries:Dict[AdditionalCountryInfoTypes] | None = None
-        with open("pycountryinfo/data/additional_countries_data.json", 'r') as file:
+        with open("data/additional_countries_data.json", 'r') as file:
             additional_countries = json.load(file)
             
         for _country in self.countries_list:
