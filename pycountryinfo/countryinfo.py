@@ -1,6 +1,6 @@
 import json
 from typing import List, Dict, Tuple
-from .country_types import CountryInfoTypes
+from pycountryinfo.country_types import CountryInfoTypes
 from importlib.resources import files
 
 class PyCountryInfo:
