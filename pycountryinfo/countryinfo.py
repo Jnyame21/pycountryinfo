@@ -3,6 +3,66 @@ from typing import List, Dict, Tuple
 from pycountryinfo.country_types import CountryInfoTypes
 from importlib.resources import files
 
+associated_countries = [
+    "American Samoa",
+    "Anguilla",
+    "Antarctica",
+    "Aruba",
+    "Bermuda",
+    "Bouvet Island",
+    "British Indian Ocean Territory",
+    "British Virgin Islands",
+    "Caribbean Netherlands",
+    "Cayman Islands",
+    "Christmas Island",
+    "Cocos (Keeling) Islands",
+    "Cook Islands",
+    "Curaçao",
+    "Falkland Islands",
+    "Faroe Islands",
+    "French Guiana",
+    "French Polynesia",
+    "French Southern and Antarctic Lands",
+    "Gibraltar",
+    "Greenland",
+    "Guadeloupe",
+    "Guam",
+    "Guernsey",
+    "Heard Island and McDonald Islands",
+    "Hong Kong",
+    "Isle of Man",
+    "Jersey",
+    "Kosovo",
+    "Macau",
+    "Martinique",
+    "Mayotte",
+    "Montserrat",
+    "New Caledonia",
+    "Niue",
+    "Norfolk Island",
+    "Northern Mariana Islands",
+    "Pitcairn Islands",
+    "Puerto Rico",
+    "Réunion",
+    "Saint Barthélemy",
+    "Saint Helena, Ascension and Tristan da Cunha",
+    "Saint Martin",
+    "Saint Pierre and Miquelon",
+    "Sint Maarten",
+    "South Georgia",
+    "Svalbard and Jan Mayen",
+    "Tokelau",
+    "Turks and Caicos Islands",
+    "United States Minor Outlying Islands",
+    "United States Virgin Islands",
+    "Wallis and Futuna",
+    "Western Sahara",
+    "Åland Islands",
+    "Dominica",
+    "DR Congo",
+    "British Indian Ocean Territory",
+]
+
 class PyCountryInfo:
     def __init__(self, country:str = ""):
         self.country_name_type:str = 'common'
@@ -53,7 +113,15 @@ class PyCountryInfo:
         return nationality in self.get_nationalities()
 
     def get_country_from_nationality(self, nationality:str) -> str:
-        country = next((item[self.name_key] for item in self.countries_list if nationality == item['nationality']), None)
+        country = None
+        countries = [item[self.name_key] for item in self.countries_list if nationality == item['nationality']]
+        if len(countries) > 1:
+            country = [item for item in countries if item not in associated_countries]
+        elif len(countries) == 1:
+            country = countries[0]
+        
+        if len(countries) > 1:
+            country = [0]
         if not country:
             raise ValueError(f"{nationality} is not a valid nationality")
         return country
