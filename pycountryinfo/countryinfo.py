@@ -120,8 +120,8 @@ class PyCountryInfo:
         elif len(countries) == 1:
             country = countries[0]
         
-        if len(countries) > 1:
-            country = [0]
+        if isinstance(country, list) and len(country) == 0:
+            country = countries[0]
         if not country:
             raise ValueError(f"{nationality} is not a valid nationality")
         return country
