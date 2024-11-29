@@ -73,7 +73,7 @@ class TestPyCountryInfo(unittest.TestCase):
     def test_get_nationality_from_country(self):
         pycountryinfo = PyCountryInfo()
         for country in pycountryinfo.get_countries():
-            assert pycountryinfo.get_country_from_nationality(pycountryinfo.get_nationality(country)), f"Country: {country}, Country from nationality: {pycountryinfo.get_country_from_nationality(pycountryinfo.get_nationality(country))}, Nationality: {pycountryinfo.get_nationality(country)}"
+            assert isinstance(pycountryinfo.get_country_from_nationality(pycountryinfo.get_nationality(country)), str), f"Country: {country}, Country from nationality: {pycountryinfo.get_country_from_nationality(pycountryinfo.get_nationality(country))}, Nationality: {pycountryinfo.get_nationality(country)}"
     
     
 if __name__ == '__main__':

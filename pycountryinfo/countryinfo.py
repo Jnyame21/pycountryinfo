@@ -107,24 +107,24 @@ class PyCountryInfo:
         return self.nationalities
 
     def is_valid_country_nationality(self, country:str, nationality:str) -> bool:
-        return nationality == self.validate_country(country).get('nationality')
+        return nationality.title() == self.validate_country(country).get('nationality', '').title()
     
     def is_valid_nationality(self, nationality:str) -> bool:
-        return nationality in self.get_nationalities()
+        return nationality.title() in self.get_nationalities()
 
     def get_country_from_nationality(self, nationality:str) -> str:
         country = None
-        countries = [item[self.name_key] for item in self.countries_list if nationality == item['nationality']]
+        countries = [item[self.name_key] for item in self.countries_list if nationality.title() == item['nationality'].title()]
         if len(countries) > 1:
             country = [item for item in countries if item not in associated_countries]
+            if not country:
+                country = countries
         elif len(countries) == 1:
-            country = countries[0]
+            country = countries
         
-        if isinstance(country, list) and len(country) == 0:
-            country = countries[0]
         if not country:
             raise ValueError(f"{nationality} is not a valid nationality")
-        return country
+        return country[0]
 
     def get_countries(self) -> Tuple[str, ...]:
         if not self.countries:
@@ -135,10 +135,9 @@ class PyCountryInfo:
         return country.title() in self.countries_dict
     
     def get_provinces(self, country:str) -> List[str]:
-        return self.validate_country(country).get('provinces')
+        return self.validate_country(country.title()).get('provinces')
 
     def is_valid_country_province(self, country:str, province:str) -> bool:
         return province in self.get_provinces(country)
-    
 
 
